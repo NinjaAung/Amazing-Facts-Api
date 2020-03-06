@@ -6,8 +6,6 @@ require('dotenv/config')
 
 // App Setup
 const app = express();
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: true }));
 const PORT = 3000
 
 
@@ -19,7 +17,10 @@ const postsRoute = require('./routes/posts');
 
 
 // Middleware
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use('/posts', postsRoute);
+
 
 
 app.use(function(req, res, next) {
