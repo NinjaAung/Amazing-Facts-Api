@@ -6,6 +6,10 @@ const PostSchema = mongoose.Schema({
         type: String,
         requires: true
         },
+    author: {
+        type: String,
+        requires: true
+    },
     date: {
         type: Date,
         default: Date.now
