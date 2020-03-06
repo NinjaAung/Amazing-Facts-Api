@@ -2,11 +2,12 @@
   "name": "amazing-facts-api",
   "version": "1.0.0",
   "description": "Api that generates random facts",
-  "main": "server/server.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
