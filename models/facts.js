@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const PostSchema = mongoose.Schema({
+const factSchema = mongoose.Schema({
     fact: {
         type: String,
         requires: true
@@ -13,7 +13,8 @@ const PostSchema = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    versionKey: false
 });
 
-module.exports = mongoose.model('Posts', PostSchema);
+module.exports = mongoose.model('Facts', factSchema);

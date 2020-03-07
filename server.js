@@ -13,19 +13,19 @@ const PORT = 3000
 
 
 //Import Routing
-const postsRoute = require('./routes/posts');
+const factsRoute = require('./routes/facts');
 
 
 // Middleware
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
-app.use('/posts', postsRoute);
+app.use('/facts', factsRoute);
 
 
 
 app.use(function(req, res, next) {
     const doc = null;
-    return res.status(404).send(`Route doesn't exist. Please refer to ${doc}`); //error
+    return res.status(404).send(`Route doesn't exist or Wrong Method has been used. Please refer to ${doc}`); //error
 });
 
 
