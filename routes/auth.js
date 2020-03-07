@@ -49,7 +49,4 @@ auth.post('/login' ,async (req, res) => {
         res.status(200).send("Success");
 });
 
-const factsRoute = require('./routes/facts');
-
-
 module.exports = auth;
