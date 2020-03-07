@@ -7,6 +7,7 @@ require('dotenv/config')
 // App Setup
 const app = express();
 let port = process.env.PORT || 3003
+let mongoose_url = process.env.MONGODB_URI
 
 
 
@@ -43,7 +44,7 @@ app.use(function(req, res, next) {
 
 
 // Connect DB
-mongoose.connect(process.env.MONGODB_URL, 
+mongoose.connect(mongoose_url, 
     { useNewUrlParser: true },
     () => console.log('Connected to DB')
 )
