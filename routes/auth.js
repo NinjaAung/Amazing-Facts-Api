@@ -1,6 +1,7 @@
 const express = require('express');
 const auth = express.Router();
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const UserModel = require('../models/user');
 
@@ -35,6 +36,16 @@ auth.post('/register', async (req, res) => {
 auth.post('/login' ,async (req, res) => {
     const { error } = loginValidate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
+
+        const user = await UserModel.findOne({username: req.body.username});
+        if (!user) return res.status(400).send('User dosent exists');
+
+        const validPassword = await bcrypt.compare(req.body.password, user.password);
+        if (!validPassword) return res.status(400).send('Password Incorrect');
+
+
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+        res.status(200).send("Success")
 
 })
 
