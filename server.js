@@ -16,8 +16,8 @@ if (port == null || port == "") {
 
 
 //Import Routing
-const factsRoute = require('./routes/facts');
-const authRoute = require('./routes/auth');
+const factsRoute = require('/routes/facts');
+const authRoute = require('/routes/auth');
 
 // Middleware
 app.use(bodyparser.json());
