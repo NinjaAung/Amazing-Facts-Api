@@ -6,7 +6,10 @@ require('dotenv/config')
 
 // App Setup
 const app = express();
-const PORT = 3000
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
 
 
@@ -23,7 +26,9 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use('/facts', factsRoute);
 app.use('/user', authRoute);
 
-
+app.get('/', (req,res) => {
+    res.send("Welcome to Amazing Facts API !")
+});
 
 app.use(function(req, res, next) {
     const doc = null;
@@ -38,6 +43,6 @@ mongoose.connect(process.env.MONGODB_URL,
 )
 
 // Start Server
-app.listen(PORT, () => {
-    console.log(`Amazing Facts Api running on localhost:${PORT}`);
+app.listen(port, () => {
+    console.log(`Amazing Facts Api running on localhost:${port}`);
 });
