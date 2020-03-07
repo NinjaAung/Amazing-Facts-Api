@@ -1,5 +1,6 @@
 const express = require('express');
 const FactModel = require('../models/facts')
+const verify = require('./verify')
 const facts = express.Router();
 
 
@@ -8,14 +9,14 @@ facts.get('/', async (req, res) => {
         const facts = await FactModel.find({}); // Recieve all posts
         res.json(facts)
     } catch (err) {
-        res.json({message: err})
+        res.status(400).send(err)
     }
 
 });
 
 
-facts.post('/', async (req, res) => { 
-    const fact = new FactModel({ // Add a post
+facts.post('/add', verify, async (req, res) => { 
+    const fact = new FactModel({
         fact: req.body.fact,
         user: req.body.user
     });
@@ -23,7 +24,7 @@ facts.post('/', async (req, res) => {
         const savedFact = await fact.save();
         res.json(savedFact);
     } catch (err) {
-        res.json({message: err})
+        res.status(400).send(err);
     }
 });
 
@@ -36,22 +37,22 @@ facts.get('/:factId', async (req, res) => {
             res.json(fact)
         }
     } catch (err) {
-        res.json({message: err});
+        res.status(400).send(err);
     }
 });
 
 
-facts.delete('/:factId', async (req, res) => {
+facts.delete('/delete/:factId', verify, async (req, res) => {
     try {
         const removedFact = await FactModel.remove({_id: req.params.factId});
         res.json(removedFact);
     } catch (err) {
-        res.json({message: err});
+        res.status(400).send(err);
     }
 });
 
 
-facts.put('/:factId', async (req, res) => {
+facts.put('/:factId', verify, async (req, res) => {
     try {
         const updateFact = await FactModel.update(
             {_id: req.params.factId}, 
@@ -59,7 +60,7 @@ facts.put('/:factId', async (req, res) => {
         });
         res.json(updateFact);
     } catch (err) {
-        res.json({message: err});
+        res.status(400).send(err);
     }
 });
 

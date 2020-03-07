@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 
 const factSchema = mongoose.Schema({
-    fact: {
-        type: String,
-        require: true
-        },
+    fact: String,
     user: {
         type: String,
         require: true
@@ -14,7 +11,6 @@ const factSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    versionKey: false
 });
 
 module.exports = mongoose.model('Facts', factSchema);

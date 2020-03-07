@@ -44,13 +44,12 @@ auth.post('/login' ,async (req, res) => {
         if (!validPassword) return res.status(400).send('Password Incorrect');
 
 
-        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
-        res.header('auth-token', token)
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET);
+        res.header('auth-token', token).json({"auth-token":token});
+        res.status(200).send("Success");
+});
 
-
-        res.status(200).send("Success")
-
-})
+const factsRoute = require('./routes/facts');
 
 
 module.exports = auth;
