@@ -14,12 +14,13 @@ const PORT = 3000
 
 //Import Routing
 const factsRoute = require('./routes/facts');
-
+const userRoute = require('./routes/user');
 
 // Middleware
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use('/facts', factsRoute);
+app.use('/user', userRoute);
 
 
 

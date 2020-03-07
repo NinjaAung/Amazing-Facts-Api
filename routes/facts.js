@@ -1,11 +1,11 @@
 const express = require('express');
-const Fact = require('../models/facts')
+const FactModel = require('../models/facts')
 const facts = express.Router();
 
 
 facts.get('/', async (req, res) => { 
     try{
-        const facts = await Fact.find({}); // Recieve all posts
+        const facts = await FactModel.find({}); // Recieve all posts
         res.json(facts)
     } catch (err) {
         res.json({message: err})
@@ -15,8 +15,9 @@ facts.get('/', async (req, res) => {
 
 
 facts.post('/', async (req, res) => { 
-    const fact = new Fact({ // Add a post
-        fact: req.body.fact
+    const fact = new FactModel({ // Add a post
+        fact: req.body.fact,
+        user: req.body.user
     });
     try{
         const savedFact = await fact.save();
@@ -28,7 +29,7 @@ facts.post('/', async (req, res) => {
 
 facts.get('/:factId', async (req, res) => {
     try {
-        const fact = await Fact.findById(req.params.factId);
+        const fact = await FactModel.findById(req.params.factId);
         if (fact == null) {
             res.status(404).send("Fact has been Deleted or Never Exsisted")
         } else {
@@ -42,7 +43,7 @@ facts.get('/:factId', async (req, res) => {
 
 facts.delete('/:factId', async (req, res) => {
     try {
-        const removedFact = await Fact.remove({_id: req.params.factId});
+        const removedFact = await FactModel.remove({_id: req.params.factId});
         res.json(removedFact);
     } catch (err) {
         res.json({message: err});
@@ -52,7 +53,7 @@ facts.delete('/:factId', async (req, res) => {
 
 facts.put('/:factId', async (req, res) => {
     try {
-        const updateFact = await Fact.update(
+        const updateFact = await FactModel.update(
             {_id: req.params.factId}, 
             { $set: { fact: req.body.fact }
         });

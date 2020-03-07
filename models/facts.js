@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const factSchema = mongoose.Schema({
     fact: {
         type: String,
-        requires: true
+        require: true
         },
-    author: {
+    user: {
         type: String,
-        requires: true
+        require: true
     },
     date: {
         type: Date,
