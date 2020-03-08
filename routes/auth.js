@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user');
 
 const Joi = require('@hapi/joi');
-const { registrationValidate, loginValidate } = require('../validation');
+const { registrationValidate, loginValidate } = require('../controller/validation');
 
 
 auth.post('/register', async (req, res) => {

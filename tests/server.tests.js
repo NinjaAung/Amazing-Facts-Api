@@ -308,4 +308,6 @@ describe('POST /user/login', () => {
         }).catch((e) => done(e));
       });
   });
+})
 });
+

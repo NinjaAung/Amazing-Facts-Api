@@ -1,6 +1,6 @@
 const express = require('express');
 const FactModel = require('../models/facts')
-const verify = require('./verify')
+const verify = require('../controller/verify')
 const facts = express.Router();
 
 
