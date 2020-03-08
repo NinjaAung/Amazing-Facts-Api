@@ -34,11 +34,11 @@ app.use('/facts', factsRoute);
 app.use('/user', authRoute);
 
 app.get('/', (req,res) => {
-    res.send("Welcome to Amazing Facts API !")
+    res.send("Welcome to Amazing Facts API ! Please refer to https://ninjaaung.github.io/Amazing-Facts-Api/#/ for documentation")
 });
 
 app.use(function(req, res, next) {
-    const doc = null;
+    const doc = "https://ninjaaung.github.io/Amazing-Facts-Api/#/";
     return res.status(404).send(`Route doesn't exist or Wrong Method has been used. Please refer to ${doc}`); //error
 });
 
