@@ -79,7 +79,7 @@ All specify routes require a ```"auth-token":":jwt-token"``` header to have acce
 > Returns a fact object on completion.
 
 ###### **Update Fact**
-**GET** ```/fact/update/:factId```
+**PUT** ```/fact/update/:factId```
 
 > Returns a updated fact object on completion
 
