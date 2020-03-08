@@ -119,12 +119,12 @@ There are other rules and restrictions not shared here, but the majority of user
 
 
 ###### **Read Fact**
-**GET** ```/fact```
+**GET** ```/fact/all```
 
 > Returns all fact objects
 
 ###### **Read Certain Fact**
-**GET** ```/fact/fact/:factId```
+**GET** ```/fact/find/:factId```
 
 > Returns a certain fact object with :factId
 
