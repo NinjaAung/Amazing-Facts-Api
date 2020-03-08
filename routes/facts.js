@@ -28,7 +28,7 @@ facts.post('/add', verify, async (req, res) => {
     }
 });
 
-facts.get('find/:factId', async (req, res) => {
+facts.get('/find/:factId', async (req, res) => {
     try {
         const fact = await FactModel.findById(req.params.factId);
         if (fact == null) {
