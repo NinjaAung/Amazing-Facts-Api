@@ -4,7 +4,7 @@ const verify = require('./verify')
 const facts = express.Router();
 
 
-facts.get('/', async (req, res) => { 
+facts.get('/all', async (req, res) => { 
     try{
         const facts = await FactModel.find({}); // Recieve all posts
         res.json(facts)
@@ -28,7 +28,7 @@ facts.post('/add', verify, async (req, res) => {
     }
 });
 
-facts.get('/:factId', async (req, res) => {
+facts.get('find/:factId', async (req, res) => {
     try {
         const fact = await FactModel.findById(req.params.factId);
         if (fact == null) {
@@ -52,7 +52,7 @@ facts.delete('/delete/:factId', verify, async (req, res) => {
 });
 
 
-facts.put('/:factId', verify, async (req, res) => {
+facts.put('/update/:factId', verify, async (req, res) => {
     try {
         const updateFact = await FactModel.update(
             {_id: req.params.factId}, 
